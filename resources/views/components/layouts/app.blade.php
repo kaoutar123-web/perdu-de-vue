@@ -14,7 +14,7 @@
                 Perdu de vue
             </a>
 
-            <nav class="flex items-center gap-2 text-sm font-medium">
+        <nav class="flex w-full flex-wrap items-center gap-2 text-sm font-medium sm:w-auto">
                 <a href="{{ route('items.index') }}"
                    @class([
                        'rounded-md px-3 py-2 hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-white',
