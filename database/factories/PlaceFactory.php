@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\PlaceKind;
 use App\Models\Place;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -10,15 +11,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PlaceFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->unique()->words(2, true),
+            'kind' => fake()->randomElement(PlaceKind::cases()),
         ];
     }
 }
