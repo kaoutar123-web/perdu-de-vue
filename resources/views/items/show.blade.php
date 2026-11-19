@@ -1,6 +1,7 @@
 <x-layouts.app :title="$item->name">
     <a href="{{ route('items.index') }}" class="text-sm text-blue-800 hover:underline">← Retour à la liste</a>
 
+
     <x-card class="mt-4">
         <div class="mb-4 flex flex-wrap items-start justify-between gap-3">
             <h1 class="text-2xl font-bold">{{ $item->name }}</h1>
@@ -49,5 +50,23 @@
                 </dd>
             </div>
         </dl>
+                <div class="mt-6 flex flex-wrap gap-2 border-t border-slate-200 pt-4">
+            @unless ($item->isReturned())
+                <form method="POST" action="{{ route('items.return', $item) }}">
+                    @csrf
+                    @method('PATCH')
+                    <x-button>Marquer comme restitué</x-button>
+                </form>
+            @endunless
+
+            <x-button variant="secondary" :href="route('items.edit', $item)">Modifier</x-button>
+
+            <form method="POST" action="{{ route('items.destroy', $item) }}"
+                  onsubmit="return confirm('Supprimer définitivement cet objet ?')">
+                @csrf
+                @method('DELETE')
+                <x-button variant="danger" type="submit">Supprimer</x-button>
+            </form>
+        </div>
     </x-card>
 </x-layouts.app>
